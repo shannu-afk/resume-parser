@@ -2,10 +2,12 @@ from fastapi import FastAPI, File, UploadFile, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 import shutil
 import os
-from .models import ParsedResume
-from .parser import extract_text_from_file, parse_resume
-from .models import ParsedResume, MatchRequest, MatchResponse
-from .matcher import calculate_match_score
+import sys
+sys.path.append('.')
+from models import ParsedResume
+from parser import extract_text_from_file, parse_resume
+from models import ParsedResume, MatchRequest, MatchResponse
+from matcher import calculate_match_score
 
 app = FastAPI(title="Resume Parser API")
 
