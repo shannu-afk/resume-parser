@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+python-multipart
+pdfplumber
+python-docx
+spacy
+python-dateutil
+email-validator
+phonenumbers
