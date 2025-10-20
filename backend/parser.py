@@ -7,6 +7,8 @@ from dateutil import parser as date_parser
 import phonenumbers
 from email_validator import validate_email, EmailNotValidError
 from phonenumbers import NumberParseException
+import sys
+sys.path.append('.')
 from models import ParsedResume, ContactInfo
 from matcher import extract_skills_from_text, canonical_to_display
 # Load spaCy model (lightweight)
@@ -30,12 +32,12 @@ def extract_email(text: str) -> str:
 def extract_phone(text: str) -> str:
     # Common regions to try (add more if needed)
     regions = ["IN", "US", "GB"]  # IN = India, US = United States, GB = UK
-    
+
     # Extract all digit sequences that might be phones (min 7 digits)
     for match in phonenumbers.PhoneNumberMatcher(text, "IN"):  # Default to India
         # Format in E.164 (standard international format)
         return phonenumbers.format_number(match.number, phonenumbers.PhoneNumberFormat.E164)
-    
+
     # Fallback: try parsing raw numbers if matcher fails
     for region in regions:
         for token in text.split():
